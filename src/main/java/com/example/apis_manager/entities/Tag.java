@@ -1,10 +1,10 @@
-package com.example.api_manager.entities;
+package com.example.apis_manager.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Tag {
 
     @Id
@@ -14,5 +14,6 @@ public class Tag {
     private String nameTag;
     private int occurence=1;
 
-    private ArrayList<Api> listApisTaged = new ArrayList<Api>();
+    @ManyToMany(mappedBy = "tags")
+    private List<Api> apis = new ArrayList<>();
 }

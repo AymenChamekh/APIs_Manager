@@ -1,4 +1,7 @@
-package com.example.api_manager.entities;
+package com.example.apis_manager.entities;
+
+import javax.persistence.Entity;
+
 
 public enum State {
 

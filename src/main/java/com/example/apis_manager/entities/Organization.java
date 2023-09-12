@@ -1,14 +1,12 @@
-package com.example.api_manager.entities;
+package com.example.apis_manager.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-public class Organization {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_organization;
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public abstract class Organization {
+
+
     private String name;
     private String adress;
     private String phone;

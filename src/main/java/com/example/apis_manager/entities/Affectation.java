@@ -1,23 +1,26 @@
-package com.example.api_manager.entities;
+package com.example.apis_manager.entities;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 
+import java.util.Date;
+@Entity
 public class Affectation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_affectation;
 
-    private Long idApi;
+    @ManyToOne
+    @JoinColumn(name = "id_api")
+    private Api api;
 
-    private Long  idConsumer;
+    @ManyToOne
+    @JoinColumn(name = "id_organization")
+    private Consumer  consumer;
 
     private LocalDate affectationDate = LocalDate.now(ZoneId.of("Europe/Paris"));
 }

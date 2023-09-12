@@ -1,17 +1,14 @@
-package com.example.api_manager.entities;
+package com.example.apis_manager.entities;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@Entity
 public class Api {
 
     @Id
@@ -26,17 +23,31 @@ public class Api {
 
     private LocalDate creationDate = LocalDate.now(ZoneId.of("Europe/Paris"));
 
+    @Enumerated(EnumType.STRING)
     private State apiState;
 
+    @Enumerated(EnumType.STRING)
     private Method apiMethod;
 
+    @Enumerated(EnumType.STRING)
     private Type apiType;
 
+    @ManyToOne
+    @JoinColumn(name="id_Provider",nullable=false)
     private Provider apiProvider;
 
-    private List<Consumer> apiConsumer= new ArrayList<Consumer>();
+    @OneToMany(mappedBy = "consumer")
+    private List<Affectation> apiConsumer= new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name="id_Category",nullable=false)
     private Category apiCategory;
 
+    @ManyToMany
+    @JoinTable(
+            name = "Api_Tag",
+            joinColumns = @JoinColumn(name = "idTag"),
+            inverseJoinColumns = @JoinColumn(name = "id_api"))
+    private List<Tag> tags = new ArrayList<>();
 
 }

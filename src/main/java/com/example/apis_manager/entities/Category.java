@@ -1,10 +1,10 @@
-package com.example.api_manager.entities;
+package com.example.apis_manager.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Category {
 
     @Id
@@ -13,5 +13,6 @@ public class Category {
 
     private String nameCategory;
 
-    private ArrayList<Api> listApiCategory = new ArrayList<Api>();
+    @OneToMany(mappedBy = "apiCategory")
+    private List<Api> listApiCategory = new ArrayList<>();
 }
