@@ -1,9 +1,15 @@
 package com.example.apis_manager.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name="Consumer")
 public class Consumer extends Organization{
@@ -15,6 +21,4 @@ public class Consumer extends Organization{
 
     @OneToMany(mappedBy = "api")
     private List<Affectation> listApiConsumed = new ArrayList<>();
-
-
 }
