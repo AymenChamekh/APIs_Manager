@@ -1,5 +1,6 @@
 package com.example.apis_manager.entities;
 
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -7,6 +8,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 import java.util.Date;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 public class Affectation {
 

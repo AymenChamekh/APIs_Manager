@@ -1,15 +1,23 @@
 package com.example.apis_manager.entities;
 
+import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
-public class Api {
+public class Api implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,11 +51,13 @@ public class Api {
     @JoinColumn(name="id_Category",nullable=false)
     private Category apiCategory;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
+
     @JoinTable(
             name = "Api_Tag",
             joinColumns = @JoinColumn(name = "idTag"),
             inverseJoinColumns = @JoinColumn(name = "id_api"))
     private List<Tag> tags = new ArrayList<>();
+
 
 }

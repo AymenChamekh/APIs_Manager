@@ -1,9 +1,11 @@
 package com.example.apis_manager.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
-
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Data
+@MappedSuperclass
 public abstract class Organization {
 
 

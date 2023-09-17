@@ -25,7 +25,9 @@ public class ConsumerService {
 
     public Consumer getConsumerById(Long id){
 
+
         return consumerRepository.findById(id).get();
+
     }
     public List<Consumer> getAllConsumers(){
         List<Consumer> listConsumer = new ArrayList<>();
