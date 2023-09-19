@@ -6,6 +6,7 @@ import com.example.apis_manager.repository.ApiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,15 +22,13 @@ public class ApiService {
     @Autowired
     CategoryService categoryService;
 
-    public void addApi(Api api){
 
-
-        List<Tag> lsTags = api.getTags();
-        for(Tag t: lsTags ){
-            tagService.addTag(t);
+    public void addApi(Api api) {
+        apiRepository.save(api);
+       for (Tag tag : api.getTags()) {
+           tagService.addTag(tag);
         }
 
-        apiRepository.save(api);
     }
 
 }

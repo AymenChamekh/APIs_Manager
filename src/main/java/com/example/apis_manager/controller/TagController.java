@@ -4,9 +4,7 @@ import com.example.apis_manager.entities.Provider;
 import com.example.apis_manager.entities.Tag;
 import com.example.apis_manager.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,9 @@ public class TagController {
     @GetMapping("/findAll")
     public List<Tag> getAllTags(){
         return  tagService.getAllTag();
+    }
+    @PostMapping("/add")
+    public void addTag(@RequestBody Tag t){
+        tagService.addTag(t);
     }
 }

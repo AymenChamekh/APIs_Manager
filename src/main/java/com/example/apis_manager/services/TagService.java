@@ -14,6 +14,10 @@ public class TagService {
     @Autowired
     TagRepository tagRepository;
 
+    public Tag getByName(String name){
+       return tagRepository.findByNameTag(name);
+
+    }
     public Tag getTagById(Long id){
 
         return tagRepository.findById(id).get();
@@ -23,18 +27,39 @@ public class TagService {
         listTags = tagRepository.findAll();
         return listTags;
     }
-    public void addTag(Tag tag){
 
-        List<Tag> listTags = getAllTag();
-        for(Tag t:listTags){
+    public void addTag(Tag tag) {
 
-                if(tag.getNameTag().equalsIgnoreCase(t.getNameTag())){
-                    t.setOccurence(t.getOccurence()+1);
-                } else{
-                tagRepository.save(tag);
-            }
-            }
+
+        Tag existingTag = tagRepository.findByNameTag(tag.getNameTag());
+
+        if (existingTag != null) {
+            // Tag already exists, just increment the occurrence
+            existingTag.setOccurence(existingTag.getOccurence() + 1);
+            tagRepository.save(existingTag);
+
+        } else {
+            // Tag doesn't exist yet, add it
+            existingTag = tag;
+            tagRepository.save(existingTag);
+        }
+
 
 
     }
+
 }
+
+
+     /* Tag existingTag = tagRepository.findByNameTag(tag.getNameTag());
+
+        if (existingTag != null) {
+            // Le tag existe déjà, mettez à jour l'occurrence
+            existingTag.setOccurence(existingTag.getOccurence() + 1);
+            existingTag.setIdTag(existingTag.getIdTag());
+            tagRepository.save(existingTag);
+        } else {
+            // Le tag n'existe pas encore, ajoutez-le
+            tagRepository.save(tag);
+        }
+    }*/
