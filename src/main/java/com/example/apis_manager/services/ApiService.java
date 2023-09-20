@@ -22,12 +22,17 @@ public class ApiService {
     @Autowired
     CategoryService categoryService;
 
-
     public void addApi(Api api) {
-        apiRepository.save(api);
-       for (Tag tag : api.getTags()) {
-           tagService.addTag(tag);
+
+        List<Tag> tags = api.getTags();
+        Api a = apiRepository.save(api);
+
+        for(Tag t : tags){
+            t.setApi(a);
+            tagService.addTag(t);
         }
+
+
 
     }
 

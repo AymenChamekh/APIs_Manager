@@ -19,13 +19,13 @@ public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTag;
-    @Column(unique=true)
+
     private String nameTag;
-    private int occurence =1;
+
+    @ManyToOne
+    @JoinColumn(name="id_api")
+    private Api api;
 
 
 
-    @ManyToMany(mappedBy = "tags",cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Api> apis = new ArrayList<>();
 }

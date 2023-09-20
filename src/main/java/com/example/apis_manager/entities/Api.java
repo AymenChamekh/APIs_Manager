@@ -1,8 +1,10 @@
 package com.example.apis_manager.entities;
 
+import com.example.apis_manager.services.TagService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -51,12 +53,17 @@ public class Api implements Serializable {
     @JoinColumn(name="id_Category",nullable=false)
     private Category apiCategory;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "api")
+    private List<Tag> tags= new ArrayList<>();
+
+   /* @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "Api_Tag",
             joinColumns = @JoinColumn(name = "idTag"),
             inverseJoinColumns = @JoinColumn(name = "id_api"))
-    private Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();*/
+
+
 
 
 }
