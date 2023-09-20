@@ -19,6 +19,6 @@ public class Consumer extends Organization{
     private Long idConsumer;
     private String sector;
 
-    @OneToMany(mappedBy = "api")
+    @OneToMany(mappedBy = "consumer")
     private List<Affectation> listApiConsumed = new ArrayList<>();
 }

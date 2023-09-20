@@ -32,6 +32,16 @@ public class TagService {
         tagRepository.save(tag);
     }
 
+    public int getOccurence(String name) {
+        List<Tag> tags = this.getAllTag();
+        int i = 0;
+        for (Tag t : tags) {
+            if (t.getNameTag().equalsIgnoreCase(name)) {
+                i++;
+            }
+        }
+        return i;
+    }
 }
 
 

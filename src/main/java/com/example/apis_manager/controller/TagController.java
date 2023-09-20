@@ -22,4 +22,8 @@ public class TagController {
     public void addTag(@RequestBody Tag t){
         tagService.addTag(t);
     }
+    @GetMapping("/getOccurence/{name}")
+    public int getOccurence(@PathVariable("name") String name){
+        return  tagService.getOccurence(name);
+    }
 }

@@ -46,7 +46,7 @@ public class Api implements Serializable {
     @JoinColumn(name="id_Provider",nullable=false)
     private Provider apiProvider;
 
-    @OneToMany(mappedBy = "consumer")
+    @OneToMany(mappedBy = "api")
     private List<Affectation> apiConsumer= new ArrayList<>();
 
     @ManyToOne
