@@ -23,7 +23,8 @@ public class Tag {
     private String nameTag;
 
     @ManyToOne
-    @JoinColumn(name="id_api")
+    @JoinColumn(name="idApi")
+    @JsonIgnore
     private Api api;
 
 

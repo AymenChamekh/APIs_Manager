@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tag")
@@ -25,5 +26,9 @@ public class TagController {
     @GetMapping("/getOccurence/{name}")
     public int getOccurence(@PathVariable("name") String name){
         return  tagService.getOccurence(name);
+    }
+    @GetMapping("/findAllOccurence")
+    public Map<String , Integer> getAllTagsOccurence(){
+        return  tagService.getTagOccurence();
     }
 }

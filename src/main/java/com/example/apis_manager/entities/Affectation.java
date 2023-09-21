@@ -21,11 +21,11 @@ public class Affectation {
     private Long id_affectation;
 
     @ManyToOne
-    @JoinColumn(name = "id_api")
+    @JoinColumn(name = "idApi")
     private Api api;
 
     @ManyToOne
-    @JoinColumn(name = "id_organization")
+    @JoinColumn(name = "idConsumer")
     private Consumer  consumer;
 
     private LocalDate affectationDate = LocalDate.now(ZoneId.of("Europe/Paris"));

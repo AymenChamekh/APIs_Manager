@@ -1,7 +1,9 @@
 package com.example.apis_manager.entities;
 
 import com.example.apis_manager.services.TagService;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class Api implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_api;
+    private Long idApi;
 
     private String nameApi;
 
@@ -37,33 +39,33 @@ public class Api implements Serializable {
     private State apiState;
 
     @Enumerated(EnumType.STRING)
-    private Method apiMethod;
+    @ElementCollection(targetClass = Method.class)
+    @CollectionTable(name = "api_method" , joinColumns = @JoinColumn(name ="idApi"))
+    @Column(name = "method")
+    private Set<Method> methods;
 
     @Enumerated(EnumType.STRING)
     private Type apiType;
 
     @ManyToOne
-    @JoinColumn(name="id_Provider",nullable=false)
+    @JoinColumn(name="idProvider",nullable=false)
+
     private Provider apiProvider;
 
-    @OneToMany(mappedBy = "api")
+    @OneToMany(mappedBy = "api",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Affectation> apiConsumer= new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name="id_Category",nullable=false)
+    @JoinColumn(name="idCategory",nullable=false)
+
     private Category apiCategory;
 
-    @OneToMany(mappedBy = "api")
+    @OneToMany(mappedBy = "api",orphanRemoval = true)
     private List<Tag> tags= new ArrayList<>();
 
-   /* @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "Api_Tag",
-            joinColumns = @JoinColumn(name = "idTag"),
-            inverseJoinColumns = @JoinColumn(name = "id_api"))
-    private Set<Tag> tags = new HashSet<>();*/
 
-
-
-
+    @JsonCreator
+    public Api(@JsonProperty("idApi") Long idApi) {
+        this.idApi = idApi;
+    }
 }

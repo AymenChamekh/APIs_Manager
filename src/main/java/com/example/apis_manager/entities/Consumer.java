@@ -1,5 +1,7 @@
 package com.example.apis_manager.entities;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +21,11 @@ public class Consumer extends Organization{
     private Long idConsumer;
     private String sector;
 
-    @OneToMany(mappedBy = "consumer")
+    @JsonCreator
+    public Consumer(@JsonProperty("idConsumer") Long idConsumer) {
+        this.idConsumer = idConsumer;
+    }
+
+    @OneToMany(mappedBy = "consumer" , cascade = CascadeType.ALL , orphanRemoval = true)
     private List<Affectation> listApiConsumed = new ArrayList<>();
 }

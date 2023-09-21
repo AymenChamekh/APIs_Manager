@@ -1,5 +1,7 @@
 package com.example.apis_manager.entities;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,14 +18,15 @@ public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_Category;
+    private Long idCategory;
 
     private String nameCategory;
 
-    public Category(String nameCategory) {
-        this.nameCategory = nameCategory;
+    @JsonCreator
+    public Category(@JsonProperty("idCategory") Long idCategory) {
+        this.idCategory = idCategory;
     }
 
-    @OneToMany(mappedBy = "apiCategory")
+    @OneToMany(mappedBy = "apiCategory" , cascade = CascadeType.ALL)
     private List<Api> listApiCategory = new ArrayList<>();
 }
