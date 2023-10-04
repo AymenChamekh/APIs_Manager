@@ -5,7 +5,7 @@ import com.example.apis_manager.entities.Category;
 import com.example.apis_manager.services.AffectationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/affectation")
 public class AffectationController {
