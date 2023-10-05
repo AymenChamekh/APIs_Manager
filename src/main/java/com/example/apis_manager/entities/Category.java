@@ -1,6 +1,7 @@
 package com.example.apis_manager.entities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -27,6 +28,7 @@ public class Category implements Serializable {
         this.idCategory = idCategory;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "apiCategory" , cascade = CascadeType.ALL)
     private List<Api> listApiCategory = new ArrayList<>();
 }

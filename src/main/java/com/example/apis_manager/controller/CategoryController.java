@@ -1,13 +1,13 @@
 package com.example.apis_manager.controller;
 
 import com.example.apis_manager.entities.Category;
-import com.example.apis_manager.repository.CategoryRepository;
+
 import com.example.apis_manager.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
