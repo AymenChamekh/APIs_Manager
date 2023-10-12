@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class ApiController {
@@ -35,6 +35,10 @@ public class ApiController {
         return  apiService.getAllApis();
     }
 
+    @GetMapping("/findByCategory/{id}")
+    public List<ApiDTO> getAllApisByCategory(@PathVariable("id") Long id){
+        return  apiService.getApiByCategory(id);
+    }
     @PutMapping("/update")
     public void updateApi(@RequestBody Api api){
         apiService.updateApi(api);

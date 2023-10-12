@@ -2,6 +2,7 @@ package com.example.apis_manager.services;
 
 import com.example.apis_manager.dto.ApiDTO;
 import com.example.apis_manager.entities.Api;
+import com.example.apis_manager.entities.Category;
 import com.example.apis_manager.entities.Method;
 import com.example.apis_manager.entities.Tag;
 import com.example.apis_manager.repository.ApiRepository;
@@ -61,6 +62,15 @@ public class ApiService {
         for(Api api : apis){
                  apisDto.add(apiDTO.fromEntity(api));
              }
+        return apisDto;
+    }
+    public List<ApiDTO> getApiByCategory(Long id){
+        List<ApiDTO> apisDto = new ArrayList<>();
+        ApiDTO apiDTO = new ApiDTO();
+        List<Api> apis = apiRepository.getApiByApiCategory(categoryService.getCategoryById(id));
+        for(Api api : apis){
+            apisDto.add(apiDTO.fromEntity(api));
+        }
         return apisDto;
     }
 
